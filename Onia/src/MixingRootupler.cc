@@ -122,7 +122,6 @@ class MixingRootupler:public edm::EDAnalyzer {
 		// ----------member data ---------------------------
 		std::string file_name;
 		edm::EDGetTokenT<pat::CompositeCandidateCollection> dimuon_Label;
-		edm::EDGetTokenT<pat::CompositeCandidateCollection> conversion_Label;
 		edm::EDGetTokenT<reco::VertexCollection> primaryVertices_Label;
 		edm::EDGetTokenT<reco::BeamSpot> bs_Label;
 		edm::EDGetTokenT<edm::View<pat::Muon>> muon_Label;
@@ -351,7 +350,6 @@ class MixingRootupler:public edm::EDAnalyzer {
 
 MixingRootupler::MixingRootupler(const edm::ParameterSet & iConfig):
 	dimuon_Label(consumes<pat::CompositeCandidateCollection>(iConfig.getParameter< edm::InputTag>("dimuons"))),
-	conversion_Label(consumes<pat::CompositeCandidateCollection>(iConfig.getParameter< edm::InputTag>("conversions"))),
 	primaryVertices_Label(consumes<reco::VertexCollection>(iConfig.getParameter< edm::InputTag>("primaryVertices"))),
 	bs_Label(consumes<reco::BeamSpot>(iConfig.getParameter<edm::InputTag>("offlineBeamSpot"))),
 	muon_Label(consumes<edm::View<pat::Muon>>(iConfig.getParameter< edm::InputTag>("muons"))),
@@ -799,9 +797,6 @@ void MixingRootupler::analyze(const edm::Event & iEvent, const edm::EventSetup &
 
 	edm::Handle<pat::CompositeCandidateCollection> dimuons;
 	iEvent.getByToken(dimuon_Label,dimuons);
-
-	edm::Handle<pat::CompositeCandidateCollection> conversions;
-	iEvent.getByToken(conversion_Label,conversions);
 
 	edm::Handle< edm::View<pat::Muon> > muons;
 	iEvent.getByToken(muon_Label, muons);

@@ -105,7 +105,9 @@ class MixingRootupler:public edm::EDAnalyzer {
 		int   tightMuon(std::vector<pat::Muon>::iterator rmu, reco::Vertex vertex);
 		int   mediumMuon(edm::View<pat::Muon>::const_iterator rmu); 
 		int   mediumMuon(std::vector<pat::Muon>::iterator rmu);
-		void fillUpsilonBestVertex(RefCountedKinematicTree mumuVertexFitTree, pat::CompositeCandidate dimuonCand, edm::ESHandle<MagneticField> bFieldHandle, reco::BeamSpot bs);
+		int   looseMuon(edm::View<pat::Muon>::const_iterator rmu); 
+		int   looseMuon(std::vector<pat::Muon>::iterator rmu);
+                void fillUpsilonBestVertex(RefCountedKinematicTree mumuVertexFitTree, pat::CompositeCandidate dimuonCand, edm::ESHandle<MagneticField> bFieldHandle, reco::BeamSpot bs);
 		void fillUpsilonBestMass(RefCountedKinematicTree mumuVertexFitTree, pat::CompositeCandidate dimuonCand, edm::ESHandle<MagneticField> bFieldHandle, reco::BeamSpot bs);
 		void fourMuonFit(pat::CompositeCandidate dimuonCand, edm::Handle< edm::View<pat::Muon> > muons, edm::ESHandle<MagneticField> bFieldHandle, reco::BeamSpot bs, reco::Vertex thePrimaryV);
 		int fourMuonMixFit_ZeroBias(pat::CompositeCandidate dimuonCand, edm::Handle< edm::View<pat::Muon> > muons, const std::vector<pat::Muon>* muons_ZeroBias, edm::ESHandle<MagneticField> bFieldHandle, reco::BeamSpot bs, reco::Vertex thePrimaryV);
@@ -239,7 +241,12 @@ class MixingRootupler:public edm::EDAnalyzer {
 		std::vector<Int_t> mu2_Medium;
 		std::vector<Int_t> mu3_Medium;
 		std::vector<Int_t> mu4_Medium;
-		std::vector<Int_t> mu3_pdgID;
+		std::vector<Int_t> mu1_Loose;
+		std::vector<Int_t> mu2_Loose;
+		std::vector<Int_t> mu3_Loose;
+		std::vector<Int_t> mu4_Loose;
+		
+        	std::vector<Int_t> mu3_pdgID;
 		std::vector<Int_t> mu4_pdgID;
 
 
@@ -324,6 +331,11 @@ class MixingRootupler:public edm::EDAnalyzer {
 		std::vector<Int_t> mu2_Medium_mix_ZeroBias;
 		std::vector<Int_t> mu3_Medium_mix_ZeroBias;
 		std::vector<Int_t> mu4_Medium_mix_ZeroBias;
+		std::vector<Int_t> mu1_Loose_mix_ZeroBias;
+		std::vector<Int_t> mu2_Loose_mix_ZeroBias;
+		std::vector<Int_t> mu3_Loose_mix_ZeroBias;
+		std::vector<Int_t> mu4_Loose_mix_ZeroBias;
+
 
 
 		std::vector<Float_t> fourMuFit_Mass_mix3evts_ZeroBias;
@@ -476,6 +488,11 @@ MixingRootupler::MixingRootupler(const edm::ParameterSet & iConfig):
 		onia_tree->Branch("mu2_Medium",   &mu2_Medium);
 		onia_tree->Branch("mu3_Medium",   &mu3_Medium);
 		onia_tree->Branch("mu4_Medium",   &mu4_Medium);
+		onia_tree->Branch("mu1_Loose",   &mu1_Loose);
+		onia_tree->Branch("mu2_Loose",   &mu2_Loose);
+		onia_tree->Branch("mu3_Loose",   &mu3_Loose);
+		onia_tree->Branch("mu4_Loose",   &mu4_Loose);
+	
 		onia_tree->Branch("mu3_pdgID",   &mu3_pdgID);
 		onia_tree->Branch("mu4_pdgID",   &mu4_pdgID);
 
@@ -560,6 +577,11 @@ MixingRootupler::MixingRootupler(const edm::ParameterSet & iConfig):
 		onia_tree->Branch("mu2_Medium_mix_ZeroBias",   &mu2_Medium_mix_ZeroBias);
 		onia_tree->Branch("mu3_Medium_mix_ZeroBias",   &mu3_Medium_mix_ZeroBias);
 		onia_tree->Branch("mu4_Medium_mix_ZeroBias",   &mu4_Medium_mix_ZeroBias);
+		onia_tree->Branch("mu1_Loose_mix_ZeroBias",   &mu1_Loose_mix_ZeroBias);
+		onia_tree->Branch("mu2_Loose_mix_ZeroBias",   &mu2_Loose_mix_ZeroBias);
+		onia_tree->Branch("mu3_Loose_mix_ZeroBias",   &mu3_Loose_mix_ZeroBias);
+		onia_tree->Branch("mu4_Loose_mix_ZeroBias",   &mu4_Loose_mix_ZeroBias);
+
 
 
 		onia_tree->Branch("fourMuFit_Mass_mix3evts_ZeroBias",  &fourMuFit_Mass_mix3evts_ZeroBias);
@@ -842,7 +864,7 @@ void MixingRootupler::analyze(const edm::Event & iEvent, const edm::EventSetup &
 		run     = iEvent.id().run();
 		lumi    = iEvent.id().luminosityBlock();
 		event   = iEvent.id().event();
-		//std::cout<<"trigger:"<<trigger<<std::endl;
+	//	std::cout<<"trigger:"<<trigger<<std::endl;
 	}
 
 	dimuon_pdgId = 0;
@@ -930,6 +952,11 @@ void MixingRootupler::analyze(const edm::Event & iEvent, const edm::EventSetup &
 	mu2_Medium.clear();
 	mu3_Medium.clear();
 	mu4_Medium.clear();
+	mu1_Loose.clear();
+	mu2_Loose.clear();
+	mu3_Loose.clear();
+	mu4_Loose.clear();
+	
 	mu3_pdgID.clear();
 	mu4_pdgID.clear();
 
@@ -1019,6 +1046,11 @@ void MixingRootupler::analyze(const edm::Event & iEvent, const edm::EventSetup &
 	mu2_Medium_mix_ZeroBias.clear();
 	mu3_Medium_mix_ZeroBias.clear();
 	mu4_Medium_mix_ZeroBias.clear();
+	mu1_Loose_mix_ZeroBias.clear();
+	mu2_Loose_mix_ZeroBias.clear();
+	mu3_Loose_mix_ZeroBias.clear();
+	mu4_Loose_mix_ZeroBias.clear();
+
 
 	fourMuFit_Mass_mix3evts_ZeroBias.clear();
 	fourMuFit_Pt_mix3evts_ZeroBias.clear();
@@ -1313,6 +1345,24 @@ void MixingRootupler::fillDescriptions(edm::ConfigurationDescriptions & descript
 	desc.setUnknown();
 	descriptions.addDefault(desc);
 }
+ int MixingRootupler::looseMuon(edm::View<pat::Muon>::const_iterator rmu) {                                                        
+        int goodLooseMuon=0;
+ 
+        if(  muon::isLooseMuon(*rmu)
+          )
+        goodLooseMuon = 1;
+ 
+         return goodLooseMuon;
+}
+ int MixingRootupler::looseMuon(std::vector<pat::Muon>::iterator rmu) {                                                        
+        int goodLooseMuon=0;
+ 
+        if(  muon::isLooseMuon(*rmu)
+          )
+        goodLooseMuon = 1;
+ 
+         return goodLooseMuon;
+}
 
 int MixingRootupler::mediumMuon(edm::View<pat::Muon>::const_iterator rmu) {
 	int goodMediumMuon=0;
@@ -1601,6 +1651,11 @@ void MixingRootupler::fourMuonFit(pat::CompositeCandidate dimuonCand, edm::Handl
 						mu2_Medium.push_back(mediumMuon(muons->begin()+dimuonCand.userInt("mu2Index")));
 						mu3_Medium.push_back(mediumMuon(mu3));
 						mu4_Medium.push_back(mediumMuon(mu4));
+                                                mu1_Loose.push_back(looseMuon(muons->begin()+dimuonCand.userInt("mu1Index")));
+						mu2_Loose.push_back(looseMuon(muons->begin()+dimuonCand.userInt("mu2Index")));
+						mu3_Loose.push_back(looseMuon(mu3));
+						mu4_Loose.push_back(looseMuon(mu4));
+
 
 						if (isMC_) { 
 							reco::GenParticleRef genMu1 = (muons->begin()+dimuonCand.userInt("mu1Index"))->genParticleRef();
@@ -1809,6 +1864,11 @@ int MixingRootupler::fourMuonMixFit_ZeroBias(pat::CompositeCandidate dimuonCand,
 					mu2_Medium_mix_ZeroBias.push_back(mediumMuon(muons->begin()+dimuonCand.userInt("mu2Index")));
 					mu3_Medium_mix_ZeroBias.push_back(mediumMuon(mu3));
 					mu4_Medium_mix_ZeroBias.push_back(mediumMuon(mu4));
+					mu1_Loose_mix_ZeroBias.push_back(looseMuon(muons->begin()+dimuonCand.userInt("mu1Index")));
+					mu2_Loose_mix_ZeroBias.push_back(looseMuon(muons->begin()+dimuonCand.userInt("mu2Index")));
+					mu3_Loose_mix_ZeroBias.push_back(looseMuon(mu3));
+					mu4_Loose_mix_ZeroBias.push_back(looseMuon(mu4));
+
 
 				}
 			}

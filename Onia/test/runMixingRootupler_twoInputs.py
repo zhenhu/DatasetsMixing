@@ -8,9 +8,9 @@ process.load("Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cf
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
 #process.GlobalTag = GlobalTag(process.GlobalTag, '92X_upgrade2017_realistic_v7', '')
-process.GlobalTag = GlobalTag(process.GlobalTag, '94X_dataRun2_ReReco_EOY17_v2', '') 
+#process.GlobalTag = GlobalTag(process.GlobalTag, '94X_dataRun2_ReReco_EOY17_v2', '') 
 #process.GlobalTag.globaltag = '74X_dataRun2_Prompt_v1'  # or some other global tag depending on your CMSSW release and sample. 
-
+process.GlobalTag = GlobalTag(process.GlobalTag, '102X_dataRun2_Sep2018Rereco_v1', '')	
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
 #process.MessageLogger.cerr.FwkReport.reportEvery = 500
 
@@ -19,8 +19,9 @@ process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(-1))
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
 #'file:/eos/uscms/store/user/lpcmuon/fourmuonMC/H0ToUps1SMuMu_m18p5_TuneCUEP8M1_13TeV-pythia8/BPHSkim-v10/180308_232212/0000/BPHSkim_1.root',
-'file:/eos/uscms/store/user/l1upgrades/Run2017/fourmuon/MuOnia/BPHSkim-v4-Run2017F-17Nov2017-v1/180314_061742/0000/BPHSkim_101.root'
-	 )
+#'file:/eos/uscms/store/user/l1upgrades/Run2017/fourmuon/MuOnia/BPHSkim-v4-Run2017F-17Nov2017-v1/180314_061742/0000/BPHSkim_101.root')
+'file:/eos/uscms/store/user/lpcbphy/hui/MuOnia/BPHSkim-2018B_Rereco-Run2018B-17Sep2018-v1/190104_025327/0000/BPHSkim_426.root'),
+eventsToProcess = cms.untracked.VEventRange('317641:1352331850-317641:1352331850')
 )
 
 

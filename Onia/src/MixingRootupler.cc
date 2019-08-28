@@ -1612,7 +1612,7 @@ void MixingRootupler::analyze(const edm::Event & iEvent, const edm::EventSetup &
 			if (dimuonCand->mass() < OniaMassMin_ || dimuonCand->mass() > OniaMassMax_) continue;
 			if (dimuonCand->daughter("muon1")->charge() == dimuonCand->daughter("muon2")->charge() ) continue;
 			if (dimuonCand->daughter("muon1")->pt()<2.0 || dimuonCand->daughter("muon2")->pt()<2.0 ) continue;
-			if (fabs(dimuonCand->daughter("muon1")->eta()>2.4)|| fabs(dimuonCand->daughter("muon2")->eta()>2.4))continue;
+			if (fabs(dimuonCand->daughter("muon1")->eta())>2.4|| fabs(dimuonCand->daughter("muon2")->eta())>2.4) continue;
 			//if (dimuonCand->daughter("muon1")->eta()>2.4|| dimuonCand->daughter("muon2")->eta()>2.4) continue;
 
 			//dimuon refit. 

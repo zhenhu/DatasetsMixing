@@ -29,8 +29,7 @@ do
 	#cat myntuple.h | sed "s/NUMBER/${jobNb}/g" > ${anaHeader};
 	#cat myntuple.C | sed "s/NUMBER/${jobNb}/g" > ${anaCScript};
 	cat runMixingRootupler.py | sed "s:INPUTPATH1:${myeospath1}:" | sed "s-INPUTFILE-${inputFiles}-" | sed "s/NUMBER/${jobNb}/g" | sed "s:MIXINPUTPATH:${myeospath2}:" | sed "s-MIXFILEINPUT-${inputFiles2}-" > ${jobCScript} ;
-	#cat runMixingRootupler.py | sed "s:INPUTPATH1:${myeospath1}:" | sed "s-INPUTFILE-${inputFiles}-" | sed "s/NUMBER/${jobNb}/g" | sed "s:MIXINPUTPATH:${myeospath2}:" | sed "s-INPUTFILE2-${inputFiles2}-"| sed "s/NUMBER/${jobNb}/g" > ${jobCScript} ;
-	cat runMixingRootupler.py | sed "s:INPUTPATH1:${myeospath1}:" | sed "s-INPUTFILE-${inputFiles}-" | sed "s/NUMBER/${jobNb}/g" | sed "s:MIXINPUTPATH:${myeospath2}:" > ${jobCScript} ;
+	#cat runMixingRootupler.py | sed "s:INPUTPATH1:${myeospath1}:" | sed "s-INPUTFILE-${inputFiles}-" | sed "s/NUMBER/${jobNb}/g" | sed "s:MIXINPUTPATH:${myeospath2}:" > ${jobCScript} ;
 	cat Run.csh | sed "s-FILENAME-${jobCScript}-" > ${scriptName};
 	chmod +x ${scriptName}
 	cat runOnCondor | sed "s/SCRIPT/${scriptName}/" | sed "s/JOBC/${jobCScript}/" > ${condorScriptName}

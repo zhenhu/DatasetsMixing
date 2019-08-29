@@ -10,7 +10,7 @@ process.GlobalTag = GlobalTag(process.GlobalTag, '94X_dataRun2_ReReco_EOY17_v2',
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
 #process.MessageLogger.cerr.FwkReport.reportEvery = 500
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(10))
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(-1))
 
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring('root://cmsxrootd.fnal.gov/INPUTPATH1/INPUTFILE')

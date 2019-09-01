@@ -19,7 +19,7 @@ rootuple = cms.EDAnalyzer('MixingRootupler',
  				    #'HLT_Trimuon5_3p5_2_Upsilon_Muon_v',       #2018  HLT string
                                     #'HLT_TrimuonOpen_5_3p5_2_Upsilon_Muon_v',  #2018 HLT string
                                     'HLT_Trimuon2_Upsilon5_Muon_v',            #2017B HLT string
-                                    'HLT_Trimuon5_3p5_2_Upsilon_Muon_v',       #2017C, D, E and F HLT string
+                                    #'HLT_Trimuon5_3p5_2_Upsilon_Muon_v',       #2017C, D, E and F HLT string
                                     #'HLT_Dimuon0_Upsilon_Muon_v',             #2016 HLT string 
                                     #'HLT_Dimuon0_Phi_Barrel_v',               #2016 HLT string 
                                     #'HLT_Dimuon13_Upsilon_v',                 #2016 HLT string 

@@ -9,7 +9,7 @@ myeospath1="/store/user/cdozen/FourMuon_Analysis/MuOnia/2016_v2/MuOnia/BPHSkim--
 myeospath2="/store/user/cdozen/FourMuon_Analysis/MiniBias/2016_v2/ZeroBias/BPHSkim--Run2016B-07Aug17_ver2-v1/190620_113508/0000"
 
 j=0
-files2=(`ls /eos/uscms${myeospath1} | grep root`)
+files2=(`ls /eos/uscms${myeospath1} | grep root`)  # added for loop over ZeroBias datasets, because #of files not equal in MuOnia
 for files in `ls /eos/uscms${myeospath2} | grep root`
 do 
 	inputFiles2=${files2[j]};

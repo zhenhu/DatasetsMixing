@@ -33,8 +33,8 @@ process.rootuple.isMC = cms.bool(False)                 # is mc?
 process.rootuple.onia_mass_cuts = cms.vdouble(0.1,500)    # you may need to adjust this
 process.rootuple.SecondSource.fileNames = cms.untracked.vstring(
     'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
-    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
-    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
-    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
-    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT'
+#    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
+#    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
+#    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
+#    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT'
 )

@@ -5,7 +5,7 @@ process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load("Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff")
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '94X_dataRun2_ReReco_EOY17_v2', '') #2017 ReReco
+process.GlobalTag = GlobalTag(process.GlobalTag, '80X_dataRun2_2016SeptRepro_v7', '') #2016 datasets 
 
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
 #process.MessageLogger.cerr.FwkReport.reportEvery = 500
@@ -33,8 +33,8 @@ process.rootuple.isMC = cms.bool(False)                 # is mc?
 process.rootuple.onia_mass_cuts = cms.vdouble(0.1,500)    # you may need to adjust this
 process.rootuple.SecondSource.fileNames = cms.untracked.vstring(
     'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
-    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
-    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
-    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
-    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT'
+#    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
+#    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
+#    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT',
+#    'root://cmsxrootd.fnal.gov/MIXINPUTPATH/MIXFILEINPUT'
 )

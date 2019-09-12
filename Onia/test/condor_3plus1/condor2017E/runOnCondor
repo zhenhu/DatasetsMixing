@@ -7,4 +7,5 @@ Output = condor_treewriter_$(Cluster)_$(Process).stdout
 Error = condor_treewriter_$(Cluster)_$(Process).stderr
 Log = condor_treewriter_$(Cluster)_$(Process).log
 x509userproxy = $ENV(X509_USER_PROXY)
+RequestCpus = 4
 Queue 1

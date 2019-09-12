@@ -1,16 +1,27 @@
 #!/bin/bash
-cmsswDir="/uscms_data/d3/cdozen/CMSSW_9_4_2/src/"
+cmsswDir="/uscms_data/d3/cdozen/CMSSW_8_0_29/src/"
 inputFiles=""
 inputFiles2=""
 
-myeospath1="/store/user/muahmad/FourMuon_Analysis/MuOnia_v3/2017_v2/MuOnia/BPHSkim--Run2017B-17Nov2017-v1/190610_173906/0000"
-myeospath2="/store/user/muahmad/FourMuon_Analysis/MiniBias/2017_v2/ZeroBias/BPHSkim--Run2017B-17Nov2017-v1/190609_091136/0000"
+myeospath1="/store/user/cdozen/FourMuon_Analysis/MuOnia/2016_v2/MuOnia/BPHSkim--Run2016B-07Aug17_ver2-v1/190620_113034/0000"
+myeospath2="/store/user/cdozen/FourMuon_Analysis/MiniBias/2016_v2/ZeroBias/BPHSkim--Run2016B-07Aug17_ver2-v1/190620_113508/0000"
+
 
 j=0
+k=0
+
+for file in `ls /eos/uscms${myeospath2} | grep root`
+do 
+let k=${k}+1;
+done
+
+
+
 files2=(`ls /eos/uscms${myeospath2} | grep root`)
 for files in `ls /eos/uscms${myeospath1} | grep root`
 do 
-	inputFiles2=${files2[j]};
+    Nzerobias=${j}%k
+	inputFiles2=${files2[ Nzerobias]};
 	inputFiles=$files;
 	echo $inputFiles;
 	echo $inputFiles2;
@@ -30,3 +41,4 @@ do
 	cat runOnCondor | sed "s/SCRIPT/${scriptName}/" | sed "s/JOBC/${jobCScript}/" > ${condorScriptName}
 	condor_submit ${condorScriptName}
 done
+
